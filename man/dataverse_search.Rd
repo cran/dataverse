@@ -4,12 +4,22 @@
 \alias{dataverse_search}
 \title{Search Dataverse server}
 \usage{
-dataverse_search(..., type = c("dataverse", "dataset", "file"),
-  subtree = NULL, sort = c("name", "date"), order = c("asc", "desc"),
-  per_page = 10, start = NULL, show_relevance = FALSE,
-  show_facets = FALSE, fq = NULL, key = Sys.getenv("DATAVERSE_KEY"),
-  server = Sys.getenv("DATAVERSE_SERVER"), verbose = TRUE,
-  http_opts = NULL)
+dataverse_search(
+  ...,
+  type = c("dataverse", "dataset", "file"),
+  subtree = NULL,
+  sort = c("name", "date"),
+  order = c("asc", "desc"),
+  per_page = 10,
+  start = NULL,
+  show_relevance = FALSE,
+  show_facets = FALSE,
+  fq = NULL,
+  key = Sys.getenv("DATAVERSE_KEY"),
+  server = Sys.getenv("DATAVERSE_SERVER"),
+  verbose = TRUE,
+  http_opts = NULL
+)
 }
 \arguments{
 \item{\dots}{A length-one character vector specifying a search query, a named character vector of search arguments, or a sequence of named character arguments. The specific fields available may vary by server installation.}
@@ -32,9 +42,15 @@ dataverse_search(..., type = c("dataverse", "dataset", "file"),
 
 \item{fq}{See API documentation.}
 
-\item{key}{A character string specifying a Dataverse server API key. If one is not specified, functions calling authenticated API endpoints will fail. Keys can be specified atomically or globally using \code{Sys.setenv("DATAVERSE_KEY" = "examplekey")}.}
+\item{key}{A character string specifying a Dataverse server API key. If one
+is not specified, functions calling authenticated API endpoints will fail.
+Keys can be specified atomically or globally using
+\code{Sys.setenv("DATAVERSE_KEY" = "examplekey")}.}
 
-\item{server}{A character string specifying a Dataverse server. There are multiple Dataverse installations, but the defaults is to use the Harvard Dataverse. This can be modified atomically or globally using \code{Sys.setenv("DATAVERSE_SERVER" = "dataverse.example.com")}.}
+\item{server}{A character string specifying a Dataverse server. There are
+multiple Dataverse installations, but the defaults is to use the Harvard
+Dataverse (\code{server = "dataverse.harvard.edu"}). This can be modified atomically
+or globally using \code{Sys.setenv("DATAVERSE_SERVER" = "dataverse.example.com")}.}
 
 \item{verbose}{A logical indicating whether to display information about the search query (default is \code{TRUE}).}
 

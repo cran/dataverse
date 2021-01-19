@@ -33,7 +33,6 @@ print.dataverse <- function(x, ...) {
 }
 
 # dataverse_dataset class
-#' @importFrom utils str
 #' @export
 print.dataverse_dataset <- function(x, ...) {
     cat("Dataset (", x$id, "): ", x$persistentUrl, "\n", sep = "")
@@ -63,7 +62,7 @@ print.dataverse_dataset <- function(x, ...) {
             print(x$files[c("label", "version", "id", "contentType")])
         }
     }
-    invisible(x)    
+    invisible(x)
 }
 
 # dataverse_dataset_version class
@@ -74,7 +73,7 @@ print.dataverse_dataset_version <- function(x, ...) {
     n <- length(x$files)
     cat(n, ngettext(n, " File:", " Files:"), "\n", sep = "")
     print(x$files)
-    invisible(x)    
+    invisible(x)
 }
 
 # get_file class

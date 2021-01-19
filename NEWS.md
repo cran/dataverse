@@ -1,3 +1,28 @@
+# CHANGES TO dataverse 0.3.0
+
+New Methods
+
+* Add new `get_dataframe_*()` methods (#48, #66)
+
+Small updates
+
+* Make filter queries (fq) work in `dataverse_search` (#36 @adam3smith)
+* Update maintainer to Will Beasley (wibeasley@hotmail.com) (#38)
+* More robust file retrieval (#39 @kuriwaki)
+* Tests use https://demo.dataverse.org/dataverse/dataverse-client-r/. (#40)
+* Fixes most get_file errors by removing query argument (#33 @kuriwaki)
+* Fix getting multiple files by id in `get_file()` (#47 @adam3smith)
+* Temporary files created by `get_file()` are automatically deleted.
+
+# CHANGES TO dataverse 0.2.1
+
+* Export `initiate_sword_dataset()`. (h/t Justin de Benedictis-Kessner)
+* Pass `key`, `server`, and `...` arguments to internal `get_dataverse()` and `get_dataset()` calls.
+* Tests now run with an explicit empty API key.
+* Fixed a bug in internal function `parse_dataset()`, related to capitalization. (#17)
+* Vignette uses 'remotes' package in place of the archived 'ghit' package. (#24 @wibeasley)
+* Updated config for Travis-CI, such as switch to xenial Ubuntu release, specify repo's org, and specify covr parameters. (#25 @wibeasley)
+
 # CHANGES TO dataverse 0.1.24
 
 * Added an `update_dataset_file()` function and improved associated documentation. (#10)

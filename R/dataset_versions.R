@@ -8,7 +8,7 @@
 #' @seealso \code{\link{get_dataset}}, \code{\link{dataset_files}}, \code{\link{publish_dataset}}
 #' @examples
 #' \dontrun{
-#' # download file from: 
+#' # download file from:
 #' # https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ARKOTI
 #' monogan <- get_dataverse("monogan")
 #' monogan_data <- dataverse_contents(monogan)
@@ -18,7 +18,7 @@
 #' }
 #' @export
 dataset_versions <- function(dataset, key = Sys.getenv("DATAVERSE_KEY"), server = Sys.getenv("DATAVERSE_SERVER"), ...) {
-    dataset <- dataset_id(dataset)
+    dataset <- dataset_id(dataset, key = key, server = server, ...)
     u <- paste0(api_url(server), "datasets/", dataset, "/versions")
     r <- httr::GET(u, httr::add_headers("X-Dataverse-key" = key), ...)
     httr::stop_for_status(r)

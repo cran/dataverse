@@ -1,7 +1,7 @@
 # @rdname roles
 # @title Roles
 # @description Get, create, update, and delete a Dataverse role
-# @details In Dataverse, roles provide one or more users with permissions. Rather than granting several permissions to each user, you can create a role that carries specific permissions and then freely change the roles to which each user is assigned. See \href{http://guides.dataverse.org/en/latest/user/dataverse-management.html#dataverse-permissions}{the Dataverse User Guide} for more details.
+# @details In Dataverse, roles provide one or more users with permissions. Rather than granting several permissions to each user, you can create a role that carries specific permissions and then freely change the roles to which each user is assigned. See \href{https://guides.dataverse.org/en/latest/user/dataverse-management.html#dataverse-permissions}{the Dataverse User Guide} for more details.
 #
 # Once created using \code{\link{create_role}}, \code{\link{delete_role}} can delete a role.
 # @template role
@@ -41,7 +41,7 @@ delete_role <- function(role, key = Sys.getenv("DATAVERSE_KEY"), server = Sys.ge
 # @export
 list_roles <- function(dataverse, key = Sys.getenv("DATAVERSE_KEY"), server = Sys.getenv("DATAVERSE_SERVER"), ...) {
     if (!missing(dataverse)) {
-        dataverse <- dataverse_id(dataverse)
+        dataverse <- dataverse_id(dataverse, key = key, server = server, ...)
         u <- paste0(api_url(server), "dataverses/", dataverse, "/roles")
         r <- httr::GET(u, httr::add_headers("X-Dataverse-key" = key), ...)
         httr::stop_for_status(r)
@@ -58,10 +58,10 @@ list_roles <- function(dataverse, key = Sys.getenv("DATAVERSE_KEY"), server = Sy
 
 # @rdname roles
 # @export
-create_role <- function(dataverse, alias, name, description, permissions, 
+create_role <- function(dataverse, alias, name, description, permissions,
                         key = Sys.getenv("DATAVERSE_KEY"), server = Sys.getenv("DATAVERSE_SERVER"), ...) {
-    
-    dataverse <- dataverse_id(dataverse)
+
+    dataverse <- dataverse_id(dataverse, key = key, server = server, ...)
     b <- list(alias = alias, name = name, description = description)
     if (!missing(permissions)) {
         permissions <- permissions

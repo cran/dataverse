@@ -8,7 +8,7 @@
 #' @seealso \code{\link{set_dataverse_metadata}}
 #' @examples
 #' \dontrun{
-#' # download file from: 
+#' # download file from:
 #' # https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/ARKOTI
 #' monogan <- get_dataverse("monogan")
 #' monogan_data <- dataverse_contents(monogan)
@@ -16,7 +16,7 @@
 #' }
 #' @export
 dataverse_metadata <- function(dataverse, key = Sys.getenv("DATAVERSE_KEY"), server = Sys.getenv("DATAVERSE_SERVER"), ...) {
-    dataverse <- dataverse_id(dataverse)
+    dataverse <- dataverse_id(dataverse, key = key, server = server, ...)
     u <- paste0(api_url(server), "dataverses/", dataverse, "/metadatablocks")
     r <- httr::GET(u, httr::add_headers("X-Dataverse-key" = key), ...)
     httr::stop_for_status(r)
@@ -35,7 +35,7 @@ dataverse_metadata <- function(dataverse, key = Sys.getenv("DATAVERSE_KEY"), ser
 #' @seealso \code{\link{dataverse_metadata}}
 #' @export
 set_dataverse_metadata <- function(dataverse, body, root = TRUE, key = Sys.getenv("DATAVERSE_KEY"), server = Sys.getenv("DATAVERSE_SERVER"), ...) {
-    dataverse <- dataverse_id(dataverse)
+    dataverse <- dataverse_id(dataverse, key = key, server = server, ...)
     u <- paste0(api_url(server), "dataverses/", dataverse, "/metadatablocks/", tolower(as.character(root)))
     r <- httr::POST(u, httr::add_headers("X-Dataverse-key" = key), ...)
     httr::stop_for_status(r)

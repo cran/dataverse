@@ -8,12 +8,12 @@
 #' \dontrun{
 #' # retrieve your service document
 #' d <- service_document()
-#' 
+#'
 #' # list available datasets in first dataverse
 #' list_datasets(d[[2]])
 #' }
 #' @seealso Managing a Dataverse: \code{\link{publish_dataverse}}; Managing a dataset: \code{\link{dataset_atom}}, \code{\link{list_datasets}}, \code{\link{create_dataset}}, \code{\link{delete_dataset}}, \code{\link{publish_dataset}}; Managing files within a dataset: \code{\link{add_file}}, \code{\link{delete_file}}
-#' @importFrom stats setNames
+#'
 #' @export
 service_document <- function(key = Sys.getenv("DATAVERSE_KEY"), server = Sys.getenv("DATAVERSE_SERVER"), ...) {
     u <- paste0(api_url(server, prefix="dvn/api/"), "data-deposit/v1.1/swordv2/service-document")
@@ -60,11 +60,10 @@ print.sword_service_document <- function(x, ...) {
 #' @return A list.
 #' @examples
 #' \dontrun{
-#' # retrieve your service document
-#' d <- service_document()
-#' 
-#' # list available datasets in first dataverse
-#' list_datasets(d[[2]])
+#' Sys.setenv("DATAVERSE_SERVER" = "demo.dataverse.org")
+#' Sys.setenv("DATAVERSE_KEY"    = "c7208dd2-6ec5-469a-bec5-f57e164888d4")
+#' dv <- get_dataverse("dataverse-client-r")
+#' list_datasets(dv)
 #' }
 #' @seealso Managing a Dataverse: \code{\link{publish_dataverse}}; Managing a dataset: \code{\link{dataset_atom}}, \code{\link{list_datasets}}, \code{\link{create_dataset}}, \code{\link{delete_dataset}}, \code{\link{publish_dataset}}; Managing files within a dataset: \code{\link{add_file}}, \code{\link{delete_file}}
 #' @export
@@ -72,19 +71,20 @@ list_datasets <- function(dataverse, key = Sys.getenv("DATAVERSE_KEY"), server =
     if (inherits(dataverse, "dataverse")) {
         dataverse <- dataverse$alias
     } else if (is.numeric(dataverse)) {
-        dataverse <- get_dataverse(dataverse)$alias
+        dataverse <- get_dataverse(dataverse, key = key, server = server, ...)$alias
     }
     u <- paste0(api_url(server, prefix="dvn/api/"), "data-deposit/v1.1/swordv2/collection/dataverse/", dataverse)
     r <- httr::GET(u, httr::authenticate(key, ""), ...)
     httr::stop_for_status(r)
-    
+
     # clean up response structure
     x <- xml2::as_list(xml2::read_xml(r$content))
-    out <- list(title = x[["title"]][[1L]],
-                generator = x[["generator"]],
-                dataverseHasBeenReleased = x[["dataverseHasBeenReleased"]][[1L]])
-    out[["datasets"]] <- do.call("rbind.data.frame", 
-        lapply(x[which(names(x) == "entry")], function(ds) {
+    feed <- x[["feed"]]
+    out <- list(title = feed[["title"]][[1L]],
+                generator = feed[["generator"]],
+                dataverseHasBeenReleased = feed[["dataverseHasBeenReleased"]][[1L]])
+    out[["datasets"]] <- do.call("rbind.data.frame",
+        lapply(feed[which(names(feed) == "entry")], function(ds) {
             list(title = ds[["title"]][[1L]],
                  id = ds[["id"]][[1L]])
         })

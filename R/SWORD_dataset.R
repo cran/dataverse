@@ -4,7 +4,7 @@
 #' @param body A list containing one or more metadata fields. Field names must be valid Dublin Core Terms labels (see details, below). The \samp{title}, \samp{description}, and \samp{creator} fields are required.
 #' @template envvars
 #' @template dots
-#' @details This function is used to initiate a dataset in a (SWORD) Dataverse by supplying relevant metadata. The function is part of the SWORD API (see \href{http://www.ietf.org/rfc/rfc5023.txt}{Atom entry specification}), which is used to upload data to a Dataverse server.
+#' @details This function is used to initiate a dataset in a (SWORD) Dataverse by supplying relevant metadata. The function is part of the SWORD API (see \href{https://www.ietf.org/rfc/rfc5023.txt}{Atom entry specification}), which is used to upload data to a Dataverse server.
 #' Allowed fields are:
 #' \dQuote{abstract}, \dQuote{accessRights}, \dQuote{accrualMethod},
 #' \dQuote{accrualPeriodicity}, \dQuote{accrualPolicy}, \dQuote{alternative},
@@ -29,7 +29,7 @@
 #' \dontrun{
 #' # retrieve your service document (dataverse list)
 #' d <- service_document()
-#' 
+#'
 #' # create a list of metadata
 #' metadat <- list(title = "My Study",
 #'                 creator = "Doe, John",
@@ -46,6 +46,7 @@
 #' # publish dataset
 #' publish_dataset(dat)
 #' }
+#' @export
 initiate_sword_dataset <- function(dataverse, body, key = Sys.getenv("DATAVERSE_KEY"), server = Sys.getenv("DATAVERSE_SERVER"), ...) {
     if (inherits(dataverse, "dataverse")) {
         dataverse <- dataverse$alias
@@ -75,7 +76,7 @@ initiate_sword_dataset <- function(dataverse, body, key = Sys.getenv("DATAVERSE_
 #' \dontrun{
 #' # retrieve your service document
 #' d <- service_document()
-#' 
+#'
 #' # create a list of metadata
 #' metadat <- list(title = "My Study",
 #'                 creator = "Doe, John",
@@ -83,7 +84,7 @@ initiate_sword_dataset <- function(dataverse, body, key = Sys.getenv("DATAVERSE_
 #'
 #' # create the dataset in first dataverse
 #' dat <- initiate_sword_dataset(d[[2]], body = metadat)
-#' 
+#'
 #' # delete a dataset
 #' delete_dataset(dat)
 #' }
@@ -127,7 +128,7 @@ delete_sword_dataset <- function(dataset, key = Sys.getenv("DATAVERSE_KEY"), ser
 #' \dontrun{
 #' # retrieve your service document
 #' d <- service_document()
-#' 
+#'
 #' # create a list of metadata
 #' metadat <- list(title = "My Study",
 #'                 creator = "Doe, John",
@@ -135,10 +136,10 @@ delete_sword_dataset <- function(dataset, key = Sys.getenv("DATAVERSE_KEY"), ser
 #'
 #' # create the dataset in first dataverse
 #' dat <- initiate_sword_dataset(d[[2]], body = metadat)
-#' 
+#'
 #' # publish dataset
 #' publish_sword_dataset(dat)
-#' 
+#'
 #' # delete a dataset
 #' delete_dataset(dat)
 #' }
@@ -179,10 +180,10 @@ publish_sword_dataset <- function(dataset, key = Sys.getenv("DATAVERSE_KEY"), se
 #' \dontrun{
 #' # retrieve your service document
 #' d <- service_document()
-#' 
+#'
 #' # retrieve dataset statement (list contents)
 #' dataset_statement(d[[2]])
-#' 
+#'
 #' # retrieve dataset atom
 #' dataset_atom(d[[2]])
 #' }
@@ -211,7 +212,6 @@ dataset_atom <- function(dataset, key = Sys.getenv("DATAVERSE_KEY"), server = Sy
 }
 
 #' @rdname dataset_atom
-#' @import xml2
 #' @export
 dataset_statement <- function(dataset, key = Sys.getenv("DATAVERSE_KEY"), server = Sys.getenv("DATAVERSE_SERVER"), ...) {
     if (inherits(dataset, "dataset_atom")) {
