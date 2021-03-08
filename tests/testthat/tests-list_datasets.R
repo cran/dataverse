@@ -1,6 +1,7 @@
 # See https://demo.dataverse.org/dataverse/dataverse-client-r
 
 test_that("dataverse root", {
+  testthat::skip_if_offline("demo.dataverse.org")
   expected <-
     structure(
       list(
@@ -28,6 +29,7 @@ test_that("dataverse root", {
 })
 
 test_that("dataverse for 'dataverse-client-r'", {
+  testthat::skip_if_offline("demo.dataverse.org")
   expected <-
     structure(
       list(
@@ -57,5 +59,8 @@ test_that("dataverse for 'dataverse-client-r'", {
   dv <- get_dataverse("dataverse-client-r")
   actual <- list_datasets(dv)
 
-  expect_equal(actual, expected)
+  expect_equal(actual$title, expected$title)
+  expect_equal(actual$generator, expected$generator)
+  expect_equal(class(actual), class(expected))
+  expect_setequal(actual$datasets$id, expected$datasets$id) # order does not matter
 })

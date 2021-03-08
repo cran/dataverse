@@ -12,24 +12,28 @@ Status](https://travis-ci.org/IQSS/dataverse-client-r.png?branch=master)](https:
 logo](https://dataverse.org/files/dataverseorg/files/dataverse_project_logo-hp.png)](https://dataverse.org)
 
 The **dataverse** package provides access to
-[Dataverse](https://dataverse.org/) APIs (versions 4-5), enabling data
+[Dataverse](https://dataverse.org/) APIs (versions 4+), enabling data
 search, retrieval, and deposit, thus allowing R users to integrate
 public data sharing into the reproducible research workflow.
 **dataverse** is the next-generation iteration of [the **dvn**
 package](https://cran.r-project.org/package=dvn), which works with
 Dataverse 3 (“Dataverse Network”) applications. **dataverse** includes
-numerous improvements for data search, retrieval, and deposit, including
-use of the (currently in development) **sword** package for data deposit
-and the **UNF** package for data fingerprinting.
+numerous improvements for data search, download, and deposit.
 
 ### Getting Started
 
-You can find a stable 2017 release on
+You can find a stable release on
 [CRAN](https://cran.r-project.org/package=dataverse), or install the
-latest development version from GitHub:
+latest development version from
+[GitHub](https://github.com/iqss/dataverse-client-r/):
 
 ``` r
-library("dataverse")
+# Install from CRAN
+install.packages("dataverse")
+
+# Install from GitHub
+# install.packages("remotes")
+remotes::install_github("iqss/dataverse-client-r")
 ```
 
 #### Keys
@@ -49,6 +53,8 @@ variable called `DATAVERSE_KEY`. It can be set within R using:
 ``` r
 Sys.setenv("DATAVERSE_KEY" = "examplekey12345")
 ```
+
+where `examplekey12345` should be replace with your own key.
 
 #### Server
 
@@ -73,7 +79,7 @@ management and permissions - are not currently exported in the package
 (but are drafted in the [source
 code](https://github.com/IQSS/dataverse-client-r)).
 
-### Data and Metadata Retrieval
+### Data Download
 
 The dataverse package provides multiple interfaces to obtain data into
 R. Users can supply a file DOI, a dataset DOI combined with a filename,
@@ -84,7 +90,7 @@ dataset read in with the appropriate R function.
 
 Use the `get_dataframe_*()` functions, depending on the input you have.
 For example, we will read a survey dataset on Dataverse,
-[nlsw88.dta](https://demo.dataverse.org/file.xhtml?persistentId=doi:10.70122/FK2/PPKHI1/ZYATZZ)
+[nlsw88.dta](https://demo.dataverse.org/dataset.xhtml?persistentId=doi:10.70122/FK2/PPIAXE)
 (`doi:10.70122/FK2/PPKHI1/ZYATZZ`), originally in Stata dta form.
 
 With a file DOI, we can use the `get_dataframe_by_doi` function:
@@ -187,74 +193,6 @@ attr(nlsw_original$race, "labels") # original dta has value labels
     ## white black other 
     ##     1     2     3
 
-#### Reading a dataset as a binary file.
-
-In some cases, you may not want to read in the data in your environment,
-perhaps because that is not possible (e.g. for a `.docx` file), and you
-want to simply write these files your local disk. To do this, use the
-more primitive `get_file_*` commands. The arguments are equivalent,
-except we no longer need an `.f` argument
-
-``` r
-nlsw_raw <-
-  get_file_by_name(
-    filename    = "nlsw88.tab",
-    dataset     = "10.70122/FK2/PPIAXE",
-    server      = "demo.dataverse.org"
-  )
-class(nlsw_raw)
-```
-
-    ## [1] "raw"
-
-#### Reading file metadata
-
-The function `get_file_metadata()` can also be used similarly. This will
-return a metadata format for ingested tabular files in the `ddi` format.
-The function `get_dataset()` will retrieve the list of files in a
-dataset.
-
-``` r
-get_dataset(
-  dataset = "10.70122/FK2/PPIAXE",
-  server  = "demo.dataverse.org"
-)
-```
-
-    ## Dataset (182162): 
-    ## Version: 1.1, RELEASED
-    ## Release Date: 2020-12-30T00:00:24Z
-    ## License: CC0
-    ## 22 Files:
-    ##                   label version      id               contentType
-    ## 1 nlsw88_rds-export.rds       1 1734016  application/octet-stream
-    ## 2            nlsw88.tab       3 1734017 text/tab-separated-values
-
-### Data Discovery
-
-Dataverse supplies a robust search API to discover Dataverses, datasets,
-and files. The simplest searches simply consist of a query string:
-
-``` r
-dataverse_search("Gary King")
-```
-
-More complicated searches might specify metadata fields:
-
-``` r
-dataverse_search(author = "Gary King", title = "Ecological Inference")
-```
-
-And searches can be restricted to specific types of objects (Dataverse,
-dataset, or file):
-
-``` r
-dataverse_search(author = "Gary King", type = "dataset")
-```
-
-The results are paginated using `per_page` argument. To retrieve
-subsequent pages, specify `start`.
-
 ### Data Archiving
 
 Dataverse provides two - basically unrelated - workflows for managing
@@ -265,30 +203,36 @@ with some metadata, add one or more files to the dataset, and then
 publish it. This looks something like the following:
 
 ``` r
-# retrieve your service document
+# After setting appropriate dataverse server and environment, obtain SWORD
+# service doc
 d <- service_document()
 
-# create a list of metadata
+# create a list of metadata for a file
 metadat <-
   list(
-    title       = "My Study",
+    title       = paste0("My-Study_", format(Sys.time(), '%Y-%m-%d_%H:%M')),
     creator     = "Doe, John",
     description = "An example study"
   )
 
-# create the dataset
-ds <- initiate_sword_dataset("mydataverse", body = metadat)
+# create the dataset, where "mydataverse" is to be replaced by the name 
+# of the already-created dataverse as shown in the URL
+ds <- initiate_sword_dataset("<mydataverse>", body = metadat)
 
 # add files to dataset
-tmp <- tempfile()
-write.csv(iris, file = tmp)
-f <- add_file(ds, file = tmp)
+readr::write_csv(iris, file = "iris.csv")
+
+# Search the initiated dataset and give a DOI and version of the dataverse as an identifier
+mydoi <- "doi:10.70122/FK2/BMZPJZ&version=DRAFT"
+
+# add dataset
+add_dataset_file(file = "iris.csv", dataset = mydoi)
 
 # publish new dataset
 publish_sword_dataset(ds)
 
 # dataset will now be published
-list_datasets("mydataverse")
+list_datasets("<mydataverse>")
 ```
 
 The second workflow is called the “native” API and is similar but uses
@@ -315,7 +259,14 @@ its metadata with `update_dataset()` or file contents using
 `update_dataset_file()` and then republish a new version using
 `publish_dataset()`.
 
-### Other Installations
+For more extensive features of updating and maintaining data, see
+[pyDataverse](https://pydataverse.readthedocs.io/en/latest/).
+
+### Related Software
+
+Other dataverse clients include
+[pyDataverse](https://pydataverse.readthedocs.io/en/latest/) for Python
+and the [Java client](https://github.com/IQSS/dataverse-client-java).
 
 Users interested in downloading metadata from archives other than
 Dataverse may be interested in Kurt Hornik’s
