@@ -1,6 +1,6 @@
-83f6d2efc53764d71175e3d23a82922f *DESCRIPTION
+2e26d6e4d78abb9952b12cde25e00d93 *DESCRIPTION
 e68db35514961e7c26c0c600f63118b0 *NAMESPACE
-548f3e979f5942e81a4dafef5b0a2985 *NEWS.md
+42c1467b3b31735368305f0533318066 *NEWS.md
 c4931139be16f1ef5e8f0a0ef0498856 *R/SWORD.R
 6b8668c1a9d3cefbf09b7912697ddf4a *R/SWORD_dataset.R
 58ad98d157a674ee92262ebf0cf4222d *R/SWORD_files.R
@@ -33,9 +33,9 @@ a039a1aa5fe24822b63744684adab222 *R/publish_dataset.R
 c2763b28155f155d1b0fd4900509df66 *R/utils.R
 e914491ff14103bba150d1a6713a3e9d *R/utils_atom.R
 b7b2a1bba1de465e6c5062755c71b935 *R/utils_dataset_statement.R
-21c18489dc2d5773df566e1d73c82586 *README.md
-15c63e7cd7495bbc8bc69db2d5c8d46f *build/vignette.rds
-624fbee007aabb948550dc181707240a *inst/CITATION
+f62fc9df0643f30f2da85db7cff27066 *README.md
+6e7cadf22ebdcc6a14fb44926042475e *build/vignette.rds
+555255b42d335530c5f7bf0af1eb6df1 *inst/CITATION
 819ccf8c1d2287cd07ae16e291f5d80e *inst/constants.yml
 a9c934272ae737c560b5fd47e1c7f8ec *inst/dataset-basketball/README.md
 d582a1f6a85581f1988e5e526e21c709 *inst/dataset-basketball/dataframe-from-tab.rds
@@ -44,13 +44,13 @@ d582a1f6a85581f1988e5e526e21c709 *inst/dataset-basketball/dataframe-from-tab.rds
 9f525f59d9108a07ea5403b6b5dd691f *inst/dataset-basketball/original/roster-bulls-1996.csv
 fb8f2ef036420124c6381def148df19e *inst/doc/A-introduction.R
 4c80a774a79c27cbcd56a7e7390b85a8 *inst/doc/A-introduction.Rmd
-d0d43cf327f9b70e01bd1b69f5b65ba6 *inst/doc/A-introduction.html
+e7e5605d525acf7bb85fdbeb21319577 *inst/doc/A-introduction.html
 1616c4c631f5f40aa48ed6459510d1b5 *inst/doc/B-search.R
 4aa0d1819123a7eb649af64f459307a3 *inst/doc/B-search.Rmd
-bc941702c232ab3ad8a8029f6913d4f2 *inst/doc/B-search.html
-c3afa0e8439a0a78f9f779ddb7912223 *inst/doc/C-download.R
-f268ffd3d9942433b0b140ef6c5c4b1c *inst/doc/C-download.Rmd
-65c3e24886942f4541aea3faab12411e *inst/doc/C-download.html
+8e84c3a3104e01288d8637f548402231 *inst/doc/B-search.html
+d404b9013725799eeb50c7d1b5e533ef *inst/doc/C-download.R
+6d63a6ffb5d13bd7baca1808bddb2875 *inst/doc/C-download.Rmd
+ef4d5a7ad5079928140a148a61409ff8 *inst/doc/C-download.html
 54704ce51c025ac6e423240e103c34d9 *inst/expected-dataverse-root.yml
 85c96695afc4aab8cf27aa33f1847cd3 *inst/expected-dataverse.yml
 e05af6d64b5f3f099957dde478e82ffc *inst/manifest-testing.csv
@@ -92,7 +92,7 @@ eb6a1fd193bf7ddd390a9d2d6a1562df *tests/testthat/tests-get_dataframe-dataframe-b
 949ce5f0c10d47092938d1ed5d6aeebe *tests/testthat/tests-get_dataframe-original-basketball.R
 3513f9638f8694625c0b9642e18354cd *tests/testthat/tests-get_dataset.R
 5c116b57d4409163dac7125f966a27d5 *tests/testthat/tests-get_dataverse.R
-9c4fb30d830694a61465a6f3b86ed2d7 *tests/testthat/tests-get_file.R
+018b04b41c2c1f2698b9889640a2b4c7 *tests/testthat/tests-get_file.R
 a98ca1be5a3d79206cd1996eb2fbe3fd *tests/testthat/tests-get_file_metadata.R
 dddaa68e658cc60281bd1c0100a5bb5d *tests/testthat/tests-list_datasets.R
 bab2d41fb1cb541d47dd258efd2e25b8 *tests/testthat/tests-native-api.R
@@ -100,4 +100,4 @@ bab2d41fb1cb541d47dd258efd2e25b8 *tests/testthat/tests-native-api.R
 a218cf86cd6f41a03b2b3cf8384899f8 *tests/testthat/tests-sword.R
 4c80a774a79c27cbcd56a7e7390b85a8 *vignettes/A-introduction.Rmd
 4aa0d1819123a7eb649af64f459307a3 *vignettes/B-search.Rmd
-f268ffd3d9942433b0b140ef6c5c4b1c *vignettes/C-download.Rmd
+6d63a6ffb5d13bd7baca1808bddb2875 *vignettes/C-download.Rmd

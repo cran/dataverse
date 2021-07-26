@@ -4,6 +4,7 @@ knitr::opts_chunk$set(results = "hold")
 
 ## ---------------------------------------------------------------------------------------------------------------------
 library("dataverse")
+library("tibble") # to see dataframes in tidyverse-form
 Sys.setenv("DATAVERSE_SERVER" = "dataverse.harvard.edu")
 
 ## ---------------------------------------------------------------------------------------------------------------------

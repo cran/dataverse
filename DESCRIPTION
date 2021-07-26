@@ -1,10 +1,15 @@
 Package: dataverse
-Version: 0.3.8
+Version: 0.3.9
 Title: Client for Dataverse 4+ Repositories
 Authors@R: 
-   c(person(given = "Will", 
+   c(person(given = "Shiro", 
+            family = "Kuriwaki",
+            role = c("aut", "cre"),
+            email = "shirokuriwaki@gmail.com",
+            comment = c(ORCID = "0000-0002-5687-2647")),
+     person(given = "Will", 
             family = "Beasley",
-            role=c("aut", "cre"),
+            role=c("aut"),
             email="wibeasley@hotmail.com",
             comment = c(ORCID = "0000-0002-5613-5006")),
      person(given = "Thomas J.", 
@@ -12,11 +17,6 @@ Authors@R:
             role = c("aut"),
             email = "thosjleeper@gmail.com",
             comment = c(ORCID = "0000-0003-4097-6326")),
-     person(given = "Shiro", 
-            family = "Kuriwaki",
-            role = c("aut"),
-            email = "shirokuriwaki@gmail.com",
-            comment = c(ORCID = "0000-0002-5687-2647")),
      person(given = "Philip", 
             family = "Durbin",
             role = c("aut"),
@@ -34,7 +34,8 @@ Authors@R:
             family = "Jee", 
             role = "ctb"))
 Imports: checkmate, httr, jsonlite, readr, stats, utils, xml2
-Suggests: covr, foreign, haven, knitr, purrr, rmarkdown, testthat, yaml
+Suggests: covr, foreign, haven, knitr, purrr, rmarkdown, testthat,
+        tibble, yaml
 Description: Provides access to Dataverse APIs <https://dataverse.org/> (versions 4-5),
     enabling data search, retrieval, and deposit. For Dataverse versions <= 3.0,
     use the archived 'dvn' package <https://cran.r-project.org/package=dvn>.
@@ -48,14 +49,14 @@ Encoding: UTF-8
 RoxygenNote: 7.1.1
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2021-04-14 05:20:42 UTC; wibeasley
-Author: Will Beasley [aut, cre] (<https://orcid.org/0000-0002-5613-5006>),
+Packaged: 2021-07-26 14:19:13 UTC; shirokuriwaki
+Author: Shiro Kuriwaki [aut, cre] (<https://orcid.org/0000-0002-5687-2647>),
+  Will Beasley [aut] (<https://orcid.org/0000-0002-5613-5006>),
   Thomas J. Leeper [aut] (<https://orcid.org/0000-0003-4097-6326>),
-  Shiro Kuriwaki [aut] (<https://orcid.org/0000-0002-5687-2647>),
   Philip Durbin [aut] (<https://orcid.org/0000-0002-9528-9470>),
   Sebastian Karcher [aut] (<https://orcid.org/0000-0001-8249-7388>),
   Jan Kanis [ctb],
   Edward Jee [ctb]
-Maintainer: Will Beasley <wibeasley@hotmail.com>
+Maintainer: Shiro Kuriwaki <shirokuriwaki@gmail.com>
 Repository: CRAN
-Date/Publication: 2021-04-14 05:40:02 UTC
+Date/Publication: 2021-07-26 15:00:02 UTC
