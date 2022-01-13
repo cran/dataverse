@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2021-07-26" />
+<meta name="date" content="2022-01-12" />
 
 <title>2. Data Search and Discovery</title>
 
@@ -27,7 +27,14 @@
     </style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -132,7 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">2. Data Search and Discovery</h1>
-<h4 class="date">2021-07-26</h4>
+<h4 class="date">2022-01-12</h4>
 
 
 
@@ -140,45 +147,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dataverse&quot;</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">&quot;DATAVERSE_SERVER&quot;</span> <span class="ot">=</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dataverse_search</span>(<span class="st">&quot;Gary King&quot;</span>)[<span class="fu">c</span>(<span class="st">&quot;name&quot;</span>)]</span></code></pre></div>
-<pre><code>## 10 of 1519 results retrieved</code></pre>
+<pre><code>## 10 of 1557 results retrieved</code></pre>
 <pre><code>##                                                                                                                   name
 ## 1                                                                            004_informal_food_retail_Nigeria_2018.tab
 ## 2                                                                                00698McArthur-King-BoxCoverSheets.pdf
 ## 3                                                                               00698McArthur-King-MemoOfAgreement.pdf
 ## 4                                                                              00698McArthur-King-StudyDescription.pdf
 ## 5  01 ReadMe Unlocking history through automated virtual unfolding of sealed documents imaged by X-ray microtomography
-## 6                                     03 Brienne Collection letterlocking data: Images folder 02/16, DB-0874_2–DB-0903
-## 7                                    03 Brienne Collection letterlocking data: Images folder 04/16, DB-0988–DB-1109_03
-## 8                                 03 Brienne Collection letterlocking data: Images folder 06/16, DB-1241_02–DB-1339_06
-## 9                                 03 Brienne Collection letterlocking data: Images folder 08/16, DB-1455_02–DB-1564_01
-## 10                                   03 Brienne Collection letterlocking data: Images folder 12/16, DB-1868–DB-1963_03</code></pre>
+## 6                                           01_ReadMe_The_Spiral_Locked_Letters_of_Elizabeth_I_and_Mary_Queen_of_Scots
+## 7                                     03 Brienne Collection letterlocking data: Images folder 02/16, DB-0874_2–DB-0903
+## 8                                    03 Brienne Collection letterlocking data: Images folder 04/16, DB-0988–DB-1109_03
+## 9                                 03 Brienne Collection letterlocking data: Images folder 06/16, DB-1241_02–DB-1339_06
+## 10                                03 Brienne Collection letterlocking data: Images folder 08/16, DB-1455_02–DB-1564_01</code></pre>
 <p>The results are paginated, so users can rely upon the <code>per_page</code> and <code>start</code> argument to requested subsequent pages of results. We’ll start at 6 and to show that we retrieve the last five results from the previous query plus 15 more (due to <code>per_page = 20</code>):</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dataverse_search</span>(<span class="st">&quot;Gary King&quot;</span>, <span class="at">start =</span> <span class="dv">6</span>, <span class="at">per_page =</span> <span class="dv">20</span>)[<span class="fu">c</span>(<span class="st">&quot;name&quot;</span>)]</span></code></pre></div>
-<pre><code>## 20 of 1519 results retrieved</code></pre>
+<pre><code>## 20 of 1557 results retrieved</code></pre>
 <pre><code>##                                                                                                                           name
-## 1                                            03 Brienne Collection letterlocking data: Images folder 04/16, DB-0988–DB-1109_03
-## 2                                         03 Brienne Collection letterlocking data: Images folder 06/16, DB-1241_02–DB-1339_06
-## 3                                         03 Brienne Collection letterlocking data: Images folder 08/16, DB-1455_02–DB-1564_01
-## 4                                            03 Brienne Collection letterlocking data: Images folder 12/16, DB-1868–DB-1963_03
-## 5                                            03 Brienne Collection letterlocking data: Images folder 14/16, DB-2064_01–2155_03
-## 6                                                                                07 Letterlocking Categories and Formats Chart
-## 7                                                                                                             077_mod1_s2m.tab
-## 8  10 Foldable: Launch Little Book of Locks (UH6089), with Categories and Formats Chart. Letterlocking Instructional Resources
-## 9                                                                                       10 Million International Dyadic Events
-## 10                                                                     12070002_Wolfville T and Kings Subd D SC 2016-92640.pdf
-## 11                                                                                     12070005-Kings Subd C SC 2016-92640.pdf
-## 12                                                                           1479 data points of covid19 policy response times
-## 13                                                             1998 Jewish Community Study of the Coachella Valley, California
-## 14                                                                                               2002 State Legislative Survey
-## 15                                                                          2007 White Sands Dune Field lidar topographic data
-## 16                                                                          2008 White Sands Dune Field lidar topographic data
-## 17                                                                                                         2012 STATA Data.tab
-## 18                                                                                                                2012pres.tab
-## 19                                                                                                          2014 SPSS Data.tab
-## 20                                                                                                         2014 STATA Data.tab</code></pre>
+## 1                                             03 Brienne Collection letterlocking data: Images folder 02/16, DB-0874_2–DB-0903
+## 2                                            03 Brienne Collection letterlocking data: Images folder 04/16, DB-0988–DB-1109_03
+## 3                                         03 Brienne Collection letterlocking data: Images folder 06/16, DB-1241_02–DB-1339_06
+## 4                                         03 Brienne Collection letterlocking data: Images folder 08/16, DB-1455_02–DB-1564_01
+## 5                                            03 Brienne Collection letterlocking data: Images folder 12/16, DB-1868–DB-1963_03
+## 6                                            03 Brienne Collection letterlocking data: Images folder 14/16, DB-2064_01–2155_03
+## 7                                                                                                       03 Spiral-lock figures
+## 8                                                                                07 Letterlocking Categories and Formats Chart
+## 9                                                                                                             077_mod1_s2m.tab
+## 10 10 Foldable: Launch Little Book of Locks (UH6089), with Categories and Formats Chart. Letterlocking Instructional Resources
+## 11                                                                                      10 Million International Dyadic Events
+## 12                                                                     12070002_Wolfville T and Kings Subd D SC 2016-92640.pdf
+## 13                                                                                     12070005-Kings Subd C SC 2016-92640.pdf
+## 14                                                                           1479 data points of covid19 policy response times
+## 15                                                             1998 Jewish Community Study of the Coachella Valley, California
+## 16                                                                                               2002 State Legislative Survey
+## 17                                                                          2007 White Sands Dune Field lidar topographic data
+## 18                                                                          2008 White Sands Dune Field lidar topographic data
+## 19                                                                                                         2012 STATA Data.tab
+## 20                                                                                                                2012pres.tab</code></pre>
 <p>More complicated searches can specify metadata fields like <code>title</code> and restrict results to a specific <code>type</code> of Dataverse object (a “dataverse”, “dataset”, or “file”):</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ei <span class="ot">&lt;-</span> <span class="fu">dataverse_search</span>(<span class="at">author =</span> <span class="st">&quot;Gary King&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Ecological Inference&quot;</span>, <span class="at">type =</span> <span class="st">&quot;dataset&quot;</span>, <span class="at">per_page =</span> <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## 20 of 1367 results retrieved</code></pre>
+<pre><code>## 20 of 1415 results retrieved</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fields returned</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ei)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># names of datasets</span></span>
@@ -189,27 +196,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [13] &quot;keywords&quot;                &quot;subjects&quot;                &quot;fileCount&quot;               &quot;versionId&quot;              
 ## [17] &quot;versionState&quot;            &quot;majorVersion&quot;            &quot;minorVersion&quot;            &quot;createdAt&quot;              
 ## [21] &quot;updatedAt&quot;               &quot;contacts&quot;                &quot;authors&quot;                 &quot;publications&quot;           
-## [25] &quot;geographicCoverage&quot;     
 ##  [1] &quot;01 ReadMe Unlocking history through automated virtual unfolding of sealed documents imaged by X-ray microtomography&quot;        
-##  [2] &quot;03 Brienne Collection letterlocking data: Images folder 02/16, DB-0874_2–DB-0903&quot;                                           
-##  [3] &quot;03 Brienne Collection letterlocking data: Images folder 04/16, DB-0988–DB-1109_03&quot;                                          
-##  [4] &quot;03 Brienne Collection letterlocking data: Images folder 06/16, DB-1241_02–DB-1339_06&quot;                                       
-##  [5] &quot;03 Brienne Collection letterlocking data: Images folder 08/16, DB-1455_02–DB-1564_01&quot;                                       
-##  [6] &quot;03 Brienne Collection letterlocking data: Images folder 12/16, DB-1868–DB-1963_03&quot;                                          
-##  [7] &quot;03 Brienne Collection letterlocking data: Images folder 14/16, DB-2064_01–2155_03&quot;                                          
-##  [8] &quot;07 Letterlocking Categories and Formats Chart&quot;                                                                              
-##  [9] &quot;10 Foldable: Launch Little Book of Locks (UH6089), with Categories and Formats Chart. Letterlocking Instructional Resources&quot;
-## [10] &quot;10 Million International Dyadic Events&quot;                                                                                     
-## [11] &quot;1479 data points of covid19 policy response times&quot;                                                                          
-## [12] &quot;2016 Census of Population: ADA and DA Maps for Kings County Nova Scotia&quot;                                                    
-## [13] &quot;3D Dust map from Green et al. (2015)&quot;                                                                                       
-## [14] &quot;3D dust map from Green et al. (2017)&quot;                                                                                       
-## [15] &quot;3D dust map from Green et al. (2019)&quot;                                                                                       
-## [16] &quot;A 1D Lyman-alpha Profile Camera for Plasma Edge Neutral Studies  on the DIII-D Tokamak&quot;                                     
-## [17] &quot;A Comparative Analysis of Brazil&#39;s Foreign Policy Drivers Towards the USA: Comment on Amorim Neto (2011)&quot;                   
-## [18] &quot;A Critique of Dyadic Design&quot;                                                                                                
-## [19] &quot;A Framework to Quantify the Signs of Abandonment in Online Digital Humanities Projects&quot;                                     
-## [20] &quot;A Lexicial Index of Electoral Democracy&quot;</code></pre>
+##  [2] &quot;01_ReadMe_The_Spiral_Locked_Letters_of_Elizabeth_I_and_Mary_Queen_of_Scots&quot;                                                 
+##  [3] &quot;03 Brienne Collection letterlocking data: Images folder 02/16, DB-0874_2–DB-0903&quot;                                           
+##  [4] &quot;03 Brienne Collection letterlocking data: Images folder 04/16, DB-0988–DB-1109_03&quot;                                          
+##  [5] &quot;03 Brienne Collection letterlocking data: Images folder 06/16, DB-1241_02–DB-1339_06&quot;                                       
+##  [6] &quot;03 Brienne Collection letterlocking data: Images folder 08/16, DB-1455_02–DB-1564_01&quot;                                       
+##  [7] &quot;03 Brienne Collection letterlocking data: Images folder 12/16, DB-1868–DB-1963_03&quot;                                          
+##  [8] &quot;03 Brienne Collection letterlocking data: Images folder 14/16, DB-2064_01–2155_03&quot;                                          
+##  [9] &quot;03 Spiral-lock figures&quot;                                                                                                     
+## [10] &quot;07 Letterlocking Categories and Formats Chart&quot;                                                                              
+## [11] &quot;10 Foldable: Launch Little Book of Locks (UH6089), with Categories and Formats Chart. Letterlocking Instructional Resources&quot;
+## [12] &quot;10 Million International Dyadic Events&quot;                                                                                     
+## [13] &quot;1479 data points of covid19 policy response times&quot;                                                                          
+## [14] &quot;2016 Census of Population: ADA and DA Maps for Kings County Nova Scotia&quot;                                                    
+## [15] &quot;3D Dust map from Green et al. (2015)&quot;                                                                                       
+## [16] &quot;3D dust map from Green et al. (2017)&quot;                                                                                       
+## [17] &quot;3D dust map from Green et al. (2019)&quot;                                                                                       
+## [18] &quot;A 1D Lyman-alpha Profile Camera for Plasma Edge Neutral Studies  on the DIII-D Tokamak&quot;                                     
+## [19] &quot;A Comparative Analysis of Brazil&#39;s Foreign Policy Drivers Towards the USA: Comment on Amorim Neto (2011)&quot;                   
+## [20] &quot;A Critique of Dyadic Design&quot;</code></pre>
 <p>Once datasets and files are identified, it is easy to download and use them directly in R. See the <a href="C-download.html">“Data Download” vignette</a> for details.</p>
 
 

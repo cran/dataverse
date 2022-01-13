@@ -24,7 +24,7 @@ test_that("roster-by-doi", {
 
   actual <-
     get_dataframe_by_doi(
-      filedoi  = expected_ds$roster$dataFile$persistentId, # A value like "doi:10.70122/FK2/HXJVJU/SA3Z2V",
+      filedoi  = expected_ds$roster$dataFile$persistentId # A value like "doi:10.70122/FK2/HXJVJU/SA3Z2V",
     )
 
   expect_equal(actual, expected_file)
@@ -38,8 +38,28 @@ test_that("roster-by-id", {
 
   actual <-
     get_dataframe_by_id(
-      fileid   = expected_ds$roster$dataFile$id, # A value like 1734005
+      fileid   = expected_ds$roster$dataFile$id # A value like 1734005
     )
 
   expect_equal(actual, expected_file)
+})
+
+test_that("load-rdata", {
+  # testthat::skip_if_offline("demo.dataverse.org")
+  testthat::skip_on_cran()
+
+  # https://stackoverflow.com/a/34926943
+  f_load_rda <- function(file) {
+    tmp <- new.env()
+    load(file = file, envir = tmp)
+    tmp[[ls(tmp)[1]]]
+  }
+
+  from_rda <- get_dataframe_by_id(
+    file = 1939003,
+    server = "demo.dataverse.org",
+    .f = f_load_rda,
+    original = TRUE)
+
+  expect_s3_class(from_rda, "tbl")
 })

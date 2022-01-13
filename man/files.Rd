@@ -5,7 +5,7 @@
 \alias{get_file_by_name}
 \alias{get_file_by_id}
 \alias{get_file_by_doi}
-\title{Download dataverse file as a raw binary}
+\title{Download Dataverse file as a raw binary}
 \usage{
 get_file(
   file,
@@ -35,6 +35,7 @@ get_file_by_id(
   format = c("original", "bundle"),
   vars = NULL,
   original = TRUE,
+  progress = NULL,
   key = Sys.getenv("DATAVERSE_KEY"),
   server = Sys.getenv("DATAVERSE_SERVER"),
   ...
@@ -56,7 +57,8 @@ get_file_by_doi(
 specifying file identifiers; or, if used with the prefix \code{"doi:"}, a
 character with the file-specific DOI; or, if used without the prefix, a
 filename accompanied by a dataset DOI in the \code{dataset} argument, or an object of
-class \dQuote{dataverse_file} as returned by \code{\link{dataset_files}}.}
+class \dQuote{dataverse_file} as returned by \code{\link{dataset_files}}.
+Can be a vector for multiple files.}
 
 \item{dataset}{A character specifying a persistent identification ID for a dataset,
 for example \code{"doi:10.70122/FK2/HXJVJU"}. Alternatively, an object of class
@@ -77,10 +79,13 @@ is not specified, functions calling authenticated API endpoints will fail.
 Keys can be specified atomically or globally using
 \code{Sys.setenv("DATAVERSE_KEY" = "examplekey")}.}
 
-\item{server}{A character string specifying a Dataverse server. There are
-multiple Dataverse installations, but the defaults is to use the Harvard
-Dataverse (\code{server = "dataverse.harvard.edu"}). This can be modified atomically
-or globally using \code{Sys.setenv("DATAVERSE_SERVER" = "dataverse.example.com")}.}
+\item{server}{A character string specifying a Dataverse server.
+Multiple Dataverse installations exist, with \code{"dataverse.harvard.edu"} being the
+most major. The server can be defined each time within a function, or it can
+be set as a default via an environment variable. To set a default, run
+\code{Sys.setenv("DATAVERSE_SERVER" = "dataverse.harvard.edu")}
+or add \verb{DATAVERSE_SERVER = "dataverse.harvard.edu} in one's \code{.Renviron}
+file (\code{usethis::edit_r_environ()}), with the appropriate domain as its value.}
 
 \item{original}{A logical, defaulting to TRUE. If a ingested (.tab) version is
 available, download the original version instead of the ingested? If there was
@@ -95,10 +100,15 @@ no ingested version, is set to NA. Note in \verb{get_dataframe_*},
 (for example, if nlsw88.dta was the original but is displayed as the ingested
 nlsw88.tab, use the ingested version.)}
 
-\item{fileid}{A numeric ID internally used for \code{get_file_by_id}}
+\item{fileid}{A numeric ID internally used for \code{get_file_by_id}. Can be a vector for multiple files.}
+
+\item{progress}{Whether to show a progress bar of the download.
+If not specified, will be set to \code{TRUE} for a file larger than 100MB. To fix
+a value, set \code{FALSE} or \code{TRUE}.}
 
 \item{filedoi}{A DOI for a single file (not the entire dataset), of the form
-\code{"10.70122/FK2/PPIAXE/MHDB0O"} or \code{"doi:10.70122/FK2/PPIAXE/MHDB0O"}}
+\code{"10.70122/FK2/PPIAXE/MHDB0O"} or \code{"doi:10.70122/FK2/PPIAXE/MHDB0O"}.
+Can be a vector for multiple files.}
 }
 \value{
 \code{get_file} returns a raw vector (or list of raw vectors,
@@ -109,8 +119,8 @@ function.  To load datasets into the R environment dataframe, see
 \description{
 Download Dataverse File(s). \verb{get_file_*}
 functions return a raw binary file, which cannot be readily analyzed in R.
-To use the objects as dataframes, see the \verb{get_dataset_*} functions at
-\link{get_dataset} instead.
+To use the objects as dataframes, see the \verb{get_dataframe_*} functions at
+\code{?get_dataframe} instead.
 }
 \details{
 This function provides access to data files from a Dataverse entry.
@@ -143,22 +153,20 @@ d3 <- get_dataset("doi:10.70122/FK2/PPIAXE", server = "demo.dataverse.org")
 f3 <- get_file(d3$files$id[1], server = "demo.dataverse.org")
 
 # 4. Retrieve multiple raw data in list
-f4_vec <- get_dataset(
+f4_meta <- get_dataset(
   "doi:10.70122/FK2/PPIAXE",
   server = "demo.dataverse.org"
-)$files$id
+)
 
-f4 <- get_file(f4_vec, server = "demo.dataverse.org")
-length(f4)
+f4 <- get_file(f4_meta$files$id, server = "demo.dataverse.org")
+names(f4) <- f4_meta$files$label
 
-# Write binary files
-# (see `get_dataframe_by_name` to load in environment)
+# Write binary files. To load into R environment, use get_dataframe_by_name()
 # The appropriate file extension needs to be assigned by the user.
-writeBin(f1, "nlsw88.dta")
-writeBin(f2, "nlsw88.dta")
 
-writeBin(f4[[1]], "nlsw88.rds") # originally a rds file
-writeBin(f4[[2]], "nlsw88.dta") # originally a dta file
+writeBin(f1, "nlsw88.dta") # .tab extension but save as dta
+writeBin(f4[["nlsw88_rds-export.rds"]], "nlsw88.rds") # originally a rds file
+writeBin(f4[["nlsw88.tab"]], "nlsw88.dta") # originally a dta file
 }
 
 }
