@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2022-01-12" />
+<meta name="date" content="2022-06-10" />
 
 <title>2. Data Search and Discovery</title>
 
@@ -25,6 +25,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -139,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <h1 class="title toc-ignore">2. Data Search and Discovery</h1>
-<h4 class="date">2022-01-12</h4>
+<h4 class="date">2022-06-10</h4>
 
 
 
@@ -147,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dataverse&quot;</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">&quot;DATAVERSE_SERVER&quot;</span> <span class="ot">=</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dataverse_search</span>(<span class="st">&quot;Gary King&quot;</span>)[<span class="fu">c</span>(<span class="st">&quot;name&quot;</span>)]</span></code></pre></div>
-<pre><code>## 10 of 1557 results retrieved</code></pre>
+<pre><code>## 10 of 1590 results retrieved</code></pre>
 <pre><code>##                                                                                                                   name
 ## 1                                                                            004_informal_food_retail_Nigeria_2018.tab
 ## 2                                                                                00698McArthur-King-BoxCoverSheets.pdf
@@ -161,7 +162,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10                                03 Brienne Collection letterlocking data: Images folder 08/16, DB-1455_02–DB-1564_01</code></pre>
 <p>The results are paginated, so users can rely upon the <code>per_page</code> and <code>start</code> argument to requested subsequent pages of results. We’ll start at 6 and to show that we retrieve the last five results from the previous query plus 15 more (due to <code>per_page = 20</code>):</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dataverse_search</span>(<span class="st">&quot;Gary King&quot;</span>, <span class="at">start =</span> <span class="dv">6</span>, <span class="at">per_page =</span> <span class="dv">20</span>)[<span class="fu">c</span>(<span class="st">&quot;name&quot;</span>)]</span></code></pre></div>
-<pre><code>## 20 of 1557 results retrieved</code></pre>
+<pre><code>## 20 of 1590 results retrieved</code></pre>
 <pre><code>##                                                                                                                           name
 ## 1                                             03 Brienne Collection letterlocking data: Images folder 02/16, DB-0874_2–DB-0903
 ## 2                                            03 Brienne Collection letterlocking data: Images folder 04/16, DB-0988–DB-1109_03
@@ -170,22 +171,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5                                            03 Brienne Collection letterlocking data: Images folder 12/16, DB-1868–DB-1963_03
 ## 6                                            03 Brienne Collection letterlocking data: Images folder 14/16, DB-2064_01–2155_03
 ## 7                                                                                                       03 Spiral-lock figures
-## 8                                                                                07 Letterlocking Categories and Formats Chart
-## 9                                                                                                             077_mod1_s2m.tab
-## 10 10 Foldable: Launch Little Book of Locks (UH6089), with Categories and Formats Chart. Letterlocking Instructional Resources
-## 11                                                                                      10 Million International Dyadic Events
-## 12                                                                     12070002_Wolfville T and Kings Subd D SC 2016-92640.pdf
-## 13                                                                                     12070005-Kings Subd C SC 2016-92640.pdf
-## 14                                                                           1479 data points of covid19 policy response times
-## 15                                                             1998 Jewish Community Study of the Coachella Valley, California
-## 16                                                                                               2002 State Legislative Survey
-## 17                                                                          2007 White Sands Dune Field lidar topographic data
-## 18                                                                          2008 White Sands Dune Field lidar topographic data
-## 19                                                                                                         2012 STATA Data.tab
-## 20                                                                                                                2012pres.tab</code></pre>
+## 8                                                                                                 03_scaledBayesianFactors.tab
+## 9                                                                                07 Letterlocking Categories and Formats Chart
+## 10                                                                                                            077_mod1_s2m.tab
+## 11                                                                              0micron Decrease 66% in the danger of Covid-19
+## 12 10 Foldable: Launch Little Book of Locks (UH6089), with Categories and Formats Chart. Letterlocking Instructional Resources
+## 13                                                                                      10 Million International Dyadic Events
+## 14                                                                     12070002_Wolfville T and Kings Subd D SC 2016-92640.pdf
+## 15                                                                                     12070005-Kings Subd C SC 2016-92640.pdf
+## 16                                                                           1479 data points of covid19 policy response times
+## 17                                                             1998 Jewish Community Study of the Coachella Valley, California
+## 18                                                                                               2002 State Legislative Survey
+## 19                                                                          2007 White Sands Dune Field lidar topographic data
+## 20                                                                          2008 White Sands Dune Field lidar topographic data</code></pre>
 <p>More complicated searches can specify metadata fields like <code>title</code> and restrict results to a specific <code>type</code> of Dataverse object (a “dataverse”, “dataset”, or “file”):</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ei <span class="ot">&lt;-</span> <span class="fu">dataverse_search</span>(<span class="at">author =</span> <span class="st">&quot;Gary King&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Ecological Inference&quot;</span>, <span class="at">type =</span> <span class="st">&quot;dataset&quot;</span>, <span class="at">per_page =</span> <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## 20 of 1415 results retrieved</code></pre>
+<pre><code>## 20 of 1454 results retrieved</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fields returned</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ei)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># names of datasets</span></span>
