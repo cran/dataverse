@@ -1,6 +1,6 @@
-5899a470435b81fc47a8b9307517a123 *DESCRIPTION
+3726f35b06181fc3f5643018efa2654a *DESCRIPTION
 e68db35514961e7c26c0c600f63118b0 *NAMESPACE
-70d839464a45d13b0687dd0bd73d5493 *NEWS.md
+849c9490548629c35f27f92f7560ef78 *NEWS.md
 b5e45cc74a1122e8961bfaed5c2f62f7 *R/SWORD.R
 46baf0cbea859100a3470d04a91e9108 *R/SWORD_dataset.R
 37791e55060f32bb2cca692b23826e25 *R/SWORD_files.R
@@ -34,9 +34,9 @@ a039a1aa5fe24822b63744684adab222 *R/publish_dataset.R
 278d38effe9f493632a2b087a020db25 *R/utils_atom.R
 b7b2a1bba1de465e6c5062755c71b935 *R/utils_dataset_statement.R
 06513b3415327886e1cc1b756569b8d2 *README.md
-e1783b475bc8e95dfe24e9648649d36b *build/vignette.rds
+b040ba6ef4a5c9b42313aa9d8073d9cc *build/vignette.rds
 555255b42d335530c5f7bf0af1eb6df1 *inst/CITATION
-1de923d4dba28ccd0b0a71f7ece10184 *inst/constants.yml
+4c3fd232a4a76071e126f8756f4b91ec *inst/constants.yml
 a9c934272ae737c560b5fd47e1c7f8ec *inst/dataset-basketball/README.md
 d582a1f6a85581f1988e5e526e21c709 *inst/dataset-basketball/dataframe-from-tab.rds
 72cf9389e7fc7eb0f8bd5407e2ffccb7 *inst/dataset-basketball/expected-metadata.yml
@@ -44,13 +44,13 @@ d582a1f6a85581f1988e5e526e21c709 *inst/dataset-basketball/dataframe-from-tab.rds
 9f525f59d9108a07ea5403b6b5dd691f *inst/dataset-basketball/original/roster-bulls-1996.csv
 fb8f2ef036420124c6381def148df19e *inst/doc/A-introduction.R
 8f545f850c18a90db6037393eb6bb6d9 *inst/doc/A-introduction.Rmd
-d541a9fc22c8025bfdc7581e80af7e23 *inst/doc/A-introduction.html
+7881131cd8c9f3da762db0b9a2eba0c4 *inst/doc/A-introduction.html
 1616c4c631f5f40aa48ed6459510d1b5 *inst/doc/B-search.R
 4aa0d1819123a7eb649af64f459307a3 *inst/doc/B-search.Rmd
-67d0dcc767faa4af19d6eef4c5bdd9bb *inst/doc/B-search.html
+370498134cf71dd873df71e7610e4d0e *inst/doc/B-search.html
 ca23c684de0ee0dc2b69650f9ee284e6 *inst/doc/C-download.R
 a4441edc46408e9157ad61dea79e9604 *inst/doc/C-download.Rmd
-cddc1d590a458c386385d765284d39b8 *inst/doc/C-download.html
+3b7800bccc2b15d4c06a3e3193ba3498 *inst/doc/C-download.html
 063e990856bb2cab1ef15961866343cf *inst/expected-dataverse-root.yml
 2b2bb066050a966a284287e3aa54c7f0 *inst/expected-dataverse.yml
 e05af6d64b5f3f099957dde478e82ffc *inst/manifest-testing.csv
@@ -88,7 +88,7 @@ a7ba3a4b5842e61cd008ed363ce8f442 *man/set_dataverse_metadata.Rd
 b7f8c2badc7c17a457d767181ad3605f *tests/testthat/manual/seed/seed-yaml.R
 8a39f5dbe15cb48ea7ef715088a3f6db *tests/testthat/tests-dataset_files.R
 dfe6b0e583edeba77e55a62e85120f2d *tests/testthat/tests-dataset_metadata.R
-b95cbbabf08ff25eebde6e0195fe2ec1 *tests/testthat/tests-dataverse_contents.R
+ab0a0dc15b4a7551f205fb7edae808e8 *tests/testthat/tests-dataverse_contents.R
 58e52fcc9cf79f428f0f7953d3b31dd5 *tests/testthat/tests-get_dataframe-dataframe-basketball.R
 949ce5f0c10d47092938d1ed5d6aeebe *tests/testthat/tests-get_dataframe-original-basketball.R
 4529eb1f86cc118725114ba2c2d75168 *tests/testthat/tests-get_dataset.R

@@ -1,5 +1,8 @@
 # dataverse (development version)
 
+# CHANGES in dataverse 0.3.12
+
+* Update expired token (#123)
 
 # CHANGES in dataverse 0.3.11
 
