@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-01-15" />
+<meta name="date" content="2023-03-23" />
 
 <title>2. Data Search and Discovery</title>
 
@@ -120,13 +120,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -331,7 +338,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">2. Data Search and Discovery</h1>
-<h4 class="date">2023-01-15</h4>
+<h4 class="date">2023-03-23</h4>
 
 
 
@@ -341,7 +348,7 @@ consist of a query string:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dataverse&quot;</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">&quot;DATAVERSE_SERVER&quot;</span> <span class="ot">=</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dataverse_search</span>(<span class="st">&quot;Gary King&quot;</span>)[<span class="fu">c</span>(<span class="st">&quot;name&quot;</span>)]</span></code></pre></div>
-<pre><code>## 10 of 1631 results retrieved</code></pre>
+<pre><code>## 10 of 3676 results retrieved</code></pre>
 <pre><code>##                                                                                                                   name
 ## 1                                                                            004_informal_food_retail_Nigeria_2018.tab
 ## 2                                                                                00698McArthur-King-BoxCoverSheets.pdf
@@ -359,7 +366,7 @@ subsequent pages of results. We’ll start at 6 and to show that we
 retrieve the last five results from the previous query plus 15 more (due
 to <code>per_page = 20</code>):</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dataverse_search</span>(<span class="st">&quot;Gary King&quot;</span>, <span class="at">start =</span> <span class="dv">6</span>, <span class="at">per_page =</span> <span class="dv">20</span>)[<span class="fu">c</span>(<span class="st">&quot;name&quot;</span>)]</span></code></pre></div>
-<pre><code>## 20 of 1631 results retrieved</code></pre>
+<pre><code>## 20 of 3676 results retrieved</code></pre>
 <pre><code>##                                                                                                                           name
 ## 1                                             03 Brienne Collection letterlocking data: Images folder 02/16, DB-0874_2–DB-0903
 ## 2                                            03 Brienne Collection letterlocking data: Images folder 04/16, DB-0988–DB-1109_03
@@ -385,7 +392,7 @@ to <code>per_page = 20</code>):</p>
 <code>title</code> and restrict results to a specific <code>type</code>
 of Dataverse object (a “dataverse”, “dataset”, or “file”):</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ei <span class="ot">&lt;-</span> <span class="fu">dataverse_search</span>(<span class="at">author =</span> <span class="st">&quot;Gary King&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Ecological Inference&quot;</span>, <span class="at">type =</span> <span class="st">&quot;dataset&quot;</span>, <span class="at">per_page =</span> <span class="dv">20</span>)</span></code></pre></div>
-<pre><code>## 20 of 1517 results retrieved</code></pre>
+<pre><code>## 20 of 1557 results retrieved</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fields returned</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ei)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># names of datasets</span></span>
