@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-03-23" />
+<meta name="date" content="2024-05-12" />
 
 <title>1. Introduction to Dataverse</title>
 
@@ -338,7 +338,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">1. Introduction to Dataverse</h1>
-<h4 class="date">2023-03-23</h4>
+<h4 class="date">2024-05-12</h4>
 
 
 
@@ -360,8 +360,8 @@ within R using <code>vignettes(package = &quot;dataverse&quot;)</code>.</p>
 <p>The dataverse client package can be installed from <a href="https://cran.r-project.org/package=dataverse">CRAN</a>, and you
 can find the latest development version and report any issues on
 GitHub:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;iqss/dataverse-client-r&quot;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dataverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;iqss/dataverse-client-r&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dataverse&quot;</span>)</span></code></pre></div>
 </div>
 <div id="terminology" class="section level2">
 <h2>Terminology</h2>
@@ -371,8 +371,8 @@ that can be installed in many places. As a result,
 <strong>dataverse</strong> can work with any installation but you need
 to specify which installation you want to work with. This can be set by
 default with an environment variable, <code>DATAVERSE_SERVER</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dataverse&quot;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">&quot;DATAVERSE_SERVER&quot;</span> <span class="ot">=</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dataverse&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">&quot;DATAVERSE_SERVER&quot;</span> <span class="ot">=</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span></code></pre></div>
 <p>This should be the Dataverse server, without the “https” prefix or
 the “/api” URL path, etc. The package attempts to compensate for any
 malformed values, though.</p>
@@ -392,7 +392,7 @@ relevant to a given study as a <em>dataset</em>.</p>
 that a specific Dataverse installation. For example, to search for data
 files or datasets that mention “ecological inference”, we can just
 do:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dataverse_search</span>(<span class="st">&quot;ecological inference&quot;</span>)[<span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;description&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">dataverse_search</span>(<span class="st">&quot;ecological inference&quot;</span>)[<span class="fu">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;description&quot;</span>)]</span></code></pre></div>
 <p>The <a href="B-search.html">search vignette</a> describes this
 functionality in more detail.</p>
 </div>
@@ -401,11 +401,11 @@ functionality in more detail.</p>
 <p>To retrieve a data file, we need to investigate the dataset being
 returned and look at what files it contains using a variety of
 functions:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_dataset</span>()</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dataset_files</span>()</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">get_file_metadata</span>()</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">get_file</span>()</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">get_dataframe_by_name</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">get_dataset</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">dataset_files</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">get_file_metadata</span>()</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">get_file</span>()</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">get_dataframe_by_name</span>()</span></code></pre></div>
 <p>The most practical of these is likely
 <code>get_dataframe_by_name()</code> which imports the object directly
 as a dataframe. <code>get_file()</code> is more primitive, and calls a
@@ -427,15 +427,15 @@ User Guide</a>. (Note: if your key is compromised, it can be regenerated
 to preserve security.) Once you have an API key, this should be stored
 as an environment variable called <code>DATAVERSE_KEY</code>. It can be
 set within R using:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">&quot;DATAVERSE_KEY&quot;</span> <span class="ot">=</span> <span class="st">&quot;examplekey12345&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">&quot;DATAVERSE_KEY&quot;</span> <span class="ot">=</span> <span class="st">&quot;examplekey12345&quot;</span>)</span></code></pre></div>
 <p>where <code>examplekey12345</code> should be replaced with your own
 key.</p>
 <p>With that set, you can easily create a new dataverse, create a
 dataset within that dataverse, push files to the dataset, and release
 it, using functions such as</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">initiate_sword_dataset</span>()</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">add_dataset_file</span>()</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">publish_dataset</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">initiate_sword_dataset</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">add_dataset_file</span>()</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">publish_dataset</span>()</span></code></pre></div>
 <p>As of <code>dataverse</code> version 0.3.0, we recommended the Python
 client (<code>https://github.com/gdcc/pyDataverse</code>) for these
 upload and maintenance functions.</p>

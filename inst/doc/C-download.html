@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2023-03-23" />
+<meta name="date" content="2024-05-12" />
 
 <title>3. Data Download</title>
 
@@ -338,7 +338,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">3. Data Download</h1>
-<h4 class="date">2023-03-23</h4>
+<h4 class="date">2024-05-12</h4>
 
 
 
@@ -354,7 +354,7 @@ Numeric Fingerprint (UNF)</a>”:
 multi-file hash for the entire study, which contains 32 files.</p>
 <p>The following examples will draw from the Harvard Dataverse, so it is
 convenient to set this as a default environment variable.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">&quot;DATAVERSE_SERVER&quot;</span> <span class="ot">=</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="st">&quot;DATAVERSE_SERVER&quot;</span> <span class="ot">=</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span></code></pre></div>
 <p>This is equivalent to setting
 <code>server = &quot;dataverse.harvard.edu&quot;</code> in every
 <code>dataverse</code> function each time. Note that if you set an
@@ -365,26 +365,26 @@ your code reproducible on a different machine.</p>
 <h2>Retrieving Plain-Text Data</h2>
 <p>We will download public data files and examine them directly in R
 using the <strong>dataverse</strong> package.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dataverse&quot;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tibble&quot;</span>) <span class="co"># to see dataframes in tidyverse-form</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;dataverse&quot;</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tibble&quot;</span>) <span class="co"># to see dataframes in tidyverse-form</span></span></code></pre></div>
 <p>First, we retrieve a plain-text file like this dataset on electricity
 consumption by <a href="https://doi.org/10.7910/DVN/ARKOTI/GN1MRT">Wakiyama et
 al. (2014)</a>. Taking the file name and dataset DOI from this
 entry,</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>energy <span class="ot">&lt;-</span> <span class="fu">get_dataframe_by_name</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;comprehensiveJapanEnergy.tab&quot;</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataset =</span> <span class="st">&quot;10.7910/DVN/ARKOTI&quot;</span>, </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(energy)</span></code></pre></div>
-<pre><code>## # A tibble: 6 × 10
-##    time date  dummy  temp temp2      all    large    house    kepco    tepco
-##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-## 1     1 8-Jan     0   5.9  34.8 95792389 35194957 26190714 13357735 26960899
-## 2     2 8-Feb     0   5.5  30.3 95156901 35322031 24224097 13315027 27189705
-## 3     3 8-Mar     0  10.7 114.  91034047 36474192 21391965 12805831 24495519
-## 4     4 8-Apr     0  14.7 216.  84087552 34949622 18494473 11494328 23540356
-## 5     5 8-May     0  18.5 342.  82742929 35417089 17923760 11589061 22848737
-## 6     6 8-Jun     0  21.3 454.  82180013 36692291 15205229 11360771 22487441</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>energy <span class="ot">&lt;-</span> <span class="fu">get_dataframe_by_name</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;comprehensiveJapanEnergy.tab&quot;</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="at">dataset =</span> <span class="st">&quot;10.7910/DVN/ARKOTI&quot;</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">head</span>(energy)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="do">## # A tibble: 6 × 10</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="do">##    time date  dummy  temp temp2      all    large    house    kepco    tepco</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="do">##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="do">## 1     1 8-Jan     0   5.9  34.8 95792389 35194957 26190714 13357735 26960899</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="do">## 2     2 8-Feb     0   5.5  30.3 95156901 35322031 24224097 13315027 27189705</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="do">## 3     3 8-Mar     0  10.7 114.  91034047 36474192 21391965 12805831 24495519</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="do">## 4     4 8-Apr     0  14.7 216.  84087552 34949622 18494473 11494328 23540356</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="do">## 5     5 8-May     0  18.5 342.  82742929 35417089 17923760 11589061 22848737</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="do">## 6     6 8-Jun     0  21.3 454.  82180013 36692291 15205229 11360771 22487441</span></span></code></pre></div>
 <p>These <code>get_dataframe_*</code> functions, introduced in v0.3.0,
 directly read in the data into a R environment through whatever R
 function supplied by <code>.f</code>. The default of the
@@ -392,21 +392,21 @@ function supplied by <code>.f</code>. The default of the
 <code>readr::read_tsv()</code>. The <code>.f</code> function can be
 modified to modify the read-in settings. For example, the following
 modification is a base-R equivalent to read in the ingested data.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>energy <span class="ot">&lt;-</span> <span class="fu">get_dataframe_by_name</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;comprehensiveJapanEnergy.tab&quot;</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataset =</span> <span class="st">&quot;10.7910/DVN/ARKOTI&quot;</span>, </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">.f =</span> <span class="cf">function</span>(x) <span class="fu">read.delim</span>(x, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>))</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(energy)</span></code></pre></div>
-<pre><code>##   time  date dummy temp temp2      all    large    house    kepco    tepco
-## 1    1 8-Jan     0  5.9  34.8 95792389 35194957 26190714 13357735 26960899
-## 2    2 8-Feb     0  5.5  30.3 95156901 35322031 24224097 13315027 27189705
-## 3    3 8-Mar     0 10.7 114.5 91034047 36474192 21391965 12805831 24495519
-## 4    4 8-Apr     0 14.7 216.1 84087552 34949622 18494473 11494328 23540356
-## 5    5 8-May     0 18.5 342.3 82742929 35417089 17923760 11589061 22848737
-## 6    6 8-Jun     0 21.3 453.7 82180013 36692291 15205229 11360771 22487441</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>energy <span class="ot">&lt;-</span> <span class="fu">get_dataframe_by_name</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;comprehensiveJapanEnergy.tab&quot;</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">dataset =</span> <span class="st">&quot;10.7910/DVN/ARKOTI&quot;</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="at">.f =</span> <span class="cf">function</span>(x) <span class="fu">read.delim</span>(x, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>))</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="fu">head</span>(energy)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="do">##   time  date dummy temp temp2      all    large    house    kepco    tepco</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="do">## 1    1 8-Jan     0  5.9  34.8 95792389 35194957 26190714 13357735 26960899</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="do">## 2    2 8-Feb     0  5.5  30.3 95156901 35322031 24224097 13315027 27189705</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="do">## 3    3 8-Mar     0 10.7 114.5 91034047 36474192 21391965 12805831 24495519</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="do">## 4    4 8-Apr     0 14.7 216.1 84087552 34949622 18494473 11494328 23540356</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="do">## 5    5 8-May     0 18.5 342.3 82742929 35417089 17923760 11589061 22848737</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="do">## 6    6 8-Jun     0 21.3 453.7 82180013 36692291 15205229 11360771 22487441</span></span></code></pre></div>
 <p>The dataverse package can also download datasets that are
 <em>drafts</em> (i.e. versions not released publicly), as long as the
 user of the dataset provides their appropriate DATAVERSE_KEY. Users may
@@ -421,10 +421,10 @@ may only appear after metadata has been added.</p>
 the survey data by <a href="https://doi.org/10.7910/DVN/ARKOTI/A8YRMP">Alvarez et
 al. (2013)</a>, it is likely that Dataverse <a href="https://guides.dataverse.org/en/latest/user/tabulardataingest/index.html">ingested</a>
 the file to a plain-text, tab-delimited format.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>argentina_tab <span class="ot">&lt;-</span> <span class="fu">get_dataframe_by_name</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;alpl2013.tab&quot;</span>,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataset =</span> <span class="st">&quot;10.7910/DVN/ARKOTI&quot;</span>,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>argentina_tab <span class="ot">&lt;-</span> <span class="fu">get_dataframe_by_name</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;alpl2013.tab&quot;</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="at">dataset =</span> <span class="st">&quot;10.7910/DVN/ARKOTI&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span></code></pre></div>
 <p>However, ingested files may not retain important dataset attributes.
 For example, Stata and SPSS datasets encode value labels on to numeric
 values. Factor variables in R dataframes encode levels, not only labels.
@@ -432,28 +432,28 @@ A plain-text ingested file will discard such information. For example,
 the <code>polling_place</code> variable in this data is only given by
 numbers, although the original data labelled these numbers with
 informative values.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(argentina_tab<span class="sc">$</span>polling_place)</span></code></pre></div>
-<pre><code>##  num [1:1475] 31 31 31 31 31 31 31 31 31 31 ...</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">str</span>(argentina_tab<span class="sc">$</span>polling_place)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="do">## num [1:1475] 31 31 31 31 31 31 31 31 31 31 ...</span></span></code></pre></div>
 <p>When ingesting, Dataverse retains a <code>original</code> version
 that retains these attributes but may not be readable in some platforms.
 The <code>get_dataframe_*</code> functions have an argument that can be
 set to <code>original = TRUE</code>. In this case we know that
 <code>alpl2013.tab</code> was originally a Stata dta file, so we can
 run:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>argentina_dta <span class="ot">&lt;-</span> <span class="fu">get_dataframe_by_name</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;alpl2013.tab&quot;</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataset =</span> <span class="st">&quot;10.7910/DVN/ARKOTI&quot;</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">original =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">.f =</span> haven<span class="sc">::</span>read_dta)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>argentina_dta <span class="ot">&lt;-</span> <span class="fu">get_dataframe_by_name</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;alpl2013.tab&quot;</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="at">dataset =</span> <span class="st">&quot;10.7910/DVN/ARKOTI&quot;</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="at">original =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="at">.f =</span> haven<span class="sc">::</span>read_dta)</span></code></pre></div>
 <p>Now we see that labels are read in through <code>haven</code>’s
 labelled variables class:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(argentina_dta<span class="sc">$</span>polling_place)</span></code></pre></div>
-<pre><code>##  dbl+lbl [1:1475] 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 3...
-##  @ label       : chr &quot;polling_place&quot;
-##  @ format.stata: chr &quot;%9.0g&quot;
-##  @ labels      : Named num [1:37] 1 2 3 4 5 6 7 8 9 10 ...
-##   ..- attr(*, &quot;names&quot;)= chr [1:37] &quot;E.E.T.&quot; &quot;Escuela Juan Bautista Alberdi&quot; &quot;Escuela Juan Carlos DÃ¡valos&quot; &quot;Escuela Bernardino de Rivadavia&quot; ...</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">str</span>(argentina_dta<span class="sc">$</span>polling_place)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="do">##  dbl+lbl [1:1475] 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 3...</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="do">##  @ label       : chr &quot;polling_place&quot;</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="do">##  @ format.stata: chr &quot;%9.0g&quot;</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="do">##  @ labels      : Named num [1:37] 1 2 3 4 5 6 7 8 9 10 ...</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;names&quot;)= chr [1:37] &quot;E.E.T.&quot; &quot;Escuela Juan Bautista Alberdi&quot; &quot;Escuela Juan Carlos DÃ¡valos&quot; &quot;Escuela Bernardino de Rivadavia&quot; ...</span></span></code></pre></div>
 <p>Users should pick <code>.f</code> and <code>original</code> based on
 their existing knowledge of the file. If the original file is a
 <code>.sav</code> SPSS file, <code>.f</code> can be
@@ -483,22 +483,22 @@ The <code>get_dataset()</code> function lists all of the files in the
 dataset along with a considerable amount of metadata about each. (Recall
 that in Dataverse, <code>dataset</code> is a collection of files, not a
 single file.) We can see a quick glance at these files using:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">get_dataset</span>(<span class="st">&quot;doi:10.7910/DVN/ARKOTI&quot;</span>, <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dataset<span class="sc">$</span>files[<span class="fu">c</span>(<span class="st">&quot;filename&quot;</span>, <span class="st">&quot;contentType&quot;</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>dataset <span class="ot">&lt;-</span> <span class="fu">get_dataset</span>(<span class="st">&quot;doi:10.7910/DVN/ARKOTI&quot;</span>, <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>dataset<span class="sc">$</span>files[<span class="fu">c</span>(<span class="st">&quot;filename&quot;</span>, <span class="st">&quot;contentType&quot;</span>)]</span></code></pre></div>
 <p>This shows that there are indeed 32 files, a mix of .R code files and
 tab- and comma-separated data files.</p>
 <p>You can also retrieve more extensive metadata using
 <code>dataset_metadata()</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">dataset_metadata</span>(<span class="st">&quot;10.7910/DVN/ARKOTI&quot;</span>, <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>), </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">max.level =</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## List of 3
-##  $ displayName: chr &quot;Citation Metadata&quot;
-##  $ name       : chr &quot;citation&quot;
-##  $ fields     :&#39;data.frame&#39;: 7 obs. of  4 variables:
-##   ..$ typeName : chr [1:7] &quot;title&quot; &quot;author&quot; &quot;datasetContact&quot; &quot;dsDescription&quot; ...
-##   ..$ multiple : logi [1:7] FALSE TRUE TRUE TRUE TRUE FALSE ...
-##   ..$ typeClass: chr [1:7] &quot;primitive&quot; &quot;compound&quot; &quot;compound&quot; &quot;compound&quot; ...
-##   ..$ value    :List of 7</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">dataset_metadata</span>(<span class="st">&quot;10.7910/DVN/ARKOTI&quot;</span>, <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>), </span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>    <span class="at">max.level =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="do">## List of 3</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="do">##  $ displayName: chr &quot;Citation Metadata&quot;</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="do">##  $ name       : chr &quot;citation&quot;</span></span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="do">##  $ fields     :&#39;data.frame&#39;: 7 obs. of  4 variables:</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="do">##   ..$ typeName : chr [1:7] &quot;title&quot; &quot;author&quot; &quot;datasetContact&quot; &quot;dsDescription&quot; ...</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="do">##   ..$ multiple : logi [1:7] FALSE TRUE TRUE TRUE TRUE FALSE ...</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="do">##   ..$ typeClass: chr [1:7] &quot;primitive&quot; &quot;compound&quot; &quot;compound&quot; &quot;compound&quot; ...</span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="do">##   ..$ value    :List of 7</span></span></code></pre></div>
 </div>
 <div id="retrieving-scripts-and-other-files" class="section level2">
 <h2>Retrieving Scripts and Other Files</h2>
@@ -508,8 +508,8 @@ as a raw binary file. See the help page examples of
 <code>get_file()</code> that use the <code>base::writeBin()</code>
 function for details on how to write and read these binary files
 instead.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>code3 <span class="ot">&lt;-</span> <span class="fu">get_file</span>(<span class="st">&quot;chapter03.R&quot;</span>, <span class="st">&quot;doi:10.7910/DVN/ARKOTI&quot;</span>, <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeBin</span>(code3, <span class="st">&quot;chapter03.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>code3 <span class="ot">&lt;-</span> <span class="fu">get_file</span>(<span class="st">&quot;chapter03.R&quot;</span>, <span class="st">&quot;doi:10.7910/DVN/ARKOTI&quot;</span>, <span class="at">server =</span> <span class="st">&quot;dataverse.harvard.edu&quot;</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">writeBin</span>(code3, <span class="st">&quot;chapter03.R&quot;</span>)</span></code></pre></div>
 </div>
 
 
