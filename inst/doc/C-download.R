@@ -10,13 +10,13 @@ library("dataverse")
 library("tibble") # to see dataframes in tidyverse-form
 
 ## ----eval=FALSE-------------------------------------------------------------------------------------------------------
-#  energy <- get_dataframe_by_name(
-#    filename = "comprehensiveJapanEnergy.tab",
-#    dataset = "10.7910/DVN/ARKOTI",
-#    server = "dataverse.harvard.edu")
+# energy <- get_dataframe_by_name(
+#   filename = "comprehensiveJapanEnergy.tab",
+#   dataset = "10.7910/DVN/ARKOTI",
+#   server = "dataverse.harvard.edu")
 
 ## ----eval=FALSE-------------------------------------------------------------------------------------------------------
-#  head(energy)
+# head(energy)
 
 ## ---------------------------------------------------------------------------------------------------------------------
 ## # A tibble: 6 × 10
@@ -30,14 +30,14 @@ library("tibble") # to see dataframes in tidyverse-form
 ## 6     6 8-Jun     0  21.3 454.  82180013 36692291 15205229 11360771 22487441
 
 ## ----eval=FALSE-------------------------------------------------------------------------------------------------------
-#  library(readr)
-#  energy <- get_dataframe_by_name(
-#    filename = "comprehensiveJapanEnergy.tab",
-#    dataset = "10.7910/DVN/ARKOTI",
-#    server = "dataverse.harvard.edu",
-#    .f = function(x) read.delim(x, sep = "\t"))
-#  
-#  head(energy)
+# library(readr)
+# energy <- get_dataframe_by_name(
+#   filename = "comprehensiveJapanEnergy.tab",
+#   dataset = "10.7910/DVN/ARKOTI",
+#   server = "dataverse.harvard.edu",
+#   .f = function(x) read.delim(x, sep = "\t"))
+# 
+# head(energy)
 
 ## ---------------------------------------------------------------------------------------------------------------------
 ##   time  date dummy temp temp2      all    large    house    kepco    tepco
@@ -49,27 +49,27 @@ library("tibble") # to see dataframes in tidyverse-form
 ## 6    6 8-Jun     0 21.3 453.7 82180013 36692291 15205229 11360771 22487441
 
 ## ----message=FALSE,eval=FALSE-----------------------------------------------------------------------------------------
-#  argentina_tab <- get_dataframe_by_name(
-#    filename = "alpl2013.tab",
-#    dataset = "10.7910/DVN/ARKOTI",
-#    server = "dataverse.harvard.edu")
+# argentina_tab <- get_dataframe_by_name(
+#   filename = "alpl2013.tab",
+#   dataset = "10.7910/DVN/ARKOTI",
+#   server = "dataverse.harvard.edu")
 
 ## ----eval=FALSE-------------------------------------------------------------------------------------------------------
-#  str(argentina_tab$polling_place)
+# str(argentina_tab$polling_place)
 
 ## ---------------------------------------------------------------------------------------------------------------------
 ## num [1:1475] 31 31 31 31 31 31 31 31 31 31 ...
 
 ## ----eval=FALSE-------------------------------------------------------------------------------------------------------
-#  argentina_dta <- get_dataframe_by_name(
-#    filename = "alpl2013.tab",
-#    dataset = "10.7910/DVN/ARKOTI",
-#    server = "dataverse.harvard.edu",
-#    original = TRUE,
-#    .f = haven::read_dta)
+# argentina_dta <- get_dataframe_by_name(
+#   filename = "alpl2013.tab",
+#   dataset = "10.7910/DVN/ARKOTI",
+#   server = "dataverse.harvard.edu",
+#   original = TRUE,
+#   .f = haven::read_dta)
 
 ## ----eval=FALSE-------------------------------------------------------------------------------------------------------
-#  str(argentina_dta$polling_place)
+# str(argentina_dta$polling_place)
 
 ## ---------------------------------------------------------------------------------------------------------------------
 ##  dbl+lbl [1:1475] 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 3...
@@ -79,8 +79,8 @@ library("tibble") # to see dataframes in tidyverse-form
 ##   ..- attr(*, "names")= chr [1:37] "E.E.T." "Escuela Juan Bautista Alberdi" "Escuela Juan Carlos DÃ¡valos" "Escuela Bernardino de Rivadavia" ...
 
 ## ----eval=FALSE-------------------------------------------------------------------------------------------------------
-#  str(dataset_metadata("10.7910/DVN/ARKOTI", server = "dataverse.harvard.edu"),
-#      max.level = 2)
+# str(dataset_metadata("10.7910/DVN/ARKOTI", server = "dataverse.harvard.edu"),
+#     max.level = 2)
 
 ## ---------------------------------------------------------------------------------------------------------------------
 ## List of 3
@@ -93,6 +93,6 @@ library("tibble") # to see dataframes in tidyverse-form
 ##   ..$ value    :List of 7
 
 ## ----eval = FALSE-----------------------------------------------------------------------------------------------------
-#  code3 <- get_file("chapter03.R", "doi:10.7910/DVN/ARKOTI", server = "dataverse.harvard.edu")
-#  writeBin(code3, "chapter03.R")
+# code3 <- get_file("chapter03.R", "doi:10.7910/DVN/ARKOTI", server = "dataverse.harvard.edu")
+# writeBin(code3, "chapter03.R")
 

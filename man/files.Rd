@@ -16,6 +16,7 @@ get_file(
   key = Sys.getenv("DATAVERSE_KEY"),
   server = Sys.getenv("DATAVERSE_SERVER"),
   original = TRUE,
+  version = ":latest",
   ...
 )
 
@@ -65,7 +66,7 @@ class \dQuote{dataverse_file} as returned by \code{\link{dataset_files}}.
 Can be a vector for multiple files.}
 
 \item{dataset}{A character specifying a persistent identification ID for a dataset,
-for example \code{"doi:10.70122/FK2/HXJVJU"}. Alternatively, an object of class
+for example \code{"10.70122/FK2/HXJVJU"}. Alternatively, an object of class
 \dQuote{dataverse_dataset} obtained by \code{dataverse_contents()}.}
 
 \item{format}{A character string specifying a file format for download.
@@ -91,7 +92,7 @@ Multiple Dataverse installations exist, with \code{"dataverse.harvard.edu"} bein
 most major. The server can be defined each time within a function, or it can
 be set as a default via an environment variable. To set a default, run
 \code{Sys.setenv("DATAVERSE_SERVER" = "dataverse.harvard.edu")}
-or add \verb{DATAVERSE_SERVER = "dataverse.harvard.edu} in one's \code{.Renviron}
+or add \code{DATAVERSE_SERVER = "dataverse.harvard.edu"} in one's \code{.Renviron}
 file (\code{usethis::edit_r_environ()}), with the appropriate domain as its value.}
 
 \item{original}{A logical, defaulting to TRUE. If a ingested (.tab) version is
@@ -99,9 +100,22 @@ available, download the original version instead of the ingested? If there was
 no ingested version, is set to NA. Note in \verb{get_dataframe_*},
 \code{original} is set to FALSE by default. Either can be changed.}
 
-\item{...}{Additional arguments passed to an HTTP request function, such as
-\code{\link[httr]{GET}}, \code{\link[httr]{POST}}, or
-\code{\link[httr]{DELETE}}.}
+\item{version}{A character specifying a version of the dataset.
+This can be of the form \code{"1.1"} or \code{"1"} (where in \code{"x.y"}, x is a major
+version and y is an optional minor version). As of v0.3.14, setting a version
+in this way will cache the dataset (See example in \code{\link{cache_dataset}})
+so that it will not re-download the file the second time and read from the cache.
+Finally, set \code{use_cache = "none"} to not read from the cache and re-download
+afresh even when \code{version} is provided.
+If the user specifies a \code{key} or \code{DATAVERSE_KEY} argument, they can access the
+draft version by \code{":draft"} (the current draft) or \code{":latest"} (which will
+prioritize the draft over the latest published version).}
+
+\item{...}{Additional arguments passed to an HTTP request function,
+such as \code{\link[httr]{GET}}, \code{\link[httr]{POST}}, or
+\code{\link[httr]{DELETE}}. See \code{\link{use_cache}} for details
+on how the \emph{R} dataverse package uses disk and session caches to
+improve network performance.}
 
 \item{filename}{Filename of the dataset, with file extension as shown in Dataverse
 (for example, if nlsw88.dta was the original but is displayed as the ingested

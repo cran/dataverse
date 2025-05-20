@@ -3,9 +3,9 @@ options(width = 120)
 knitr::opts_chunk$set(results = "hold")
 
 ## ----eval=FALSE-------------------------------------------------------------------------------------------------------
-#  library("dataverse")
-#  Sys.setenv("DATAVERSE_SERVER" = "dataverse.harvard.edu")
-#  dataverse_search("Gary King")[c("name")]
+# library("dataverse")
+# Sys.setenv("DATAVERSE_SERVER" = "dataverse.harvard.edu")
+# dataverse_search("Gary King")[c("name")]
 
 ## ---------------------------------------------------------------------------------------------------------------------
 ##                                                                name
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(results = "hold")
 ## 10                           00698McArthur-King-MemoOfAgreement.pdf
 
 ## ----eval=FALSE-------------------------------------------------------------------------------------------------------
-#  dataverse_search("Gary King", start = 6, per_page = 20)[c("name")]
+# dataverse_search("Gary King", start = 6, per_page = 20)[c("name")]
 
 ## ---------------------------------------------------------------------------------------------------------------------
 # 10 of 3676 results retrieved
@@ -38,11 +38,11 @@ knitr::opts_chunk$set(results = "hold")
 ## 10                                03 Brienne Collection letterlocking data: Images folder 08/16, DB-1455_02–DB-1564_01
 
 ## ----eval=FALSE-------------------------------------------------------------------------------------------------------
-#  ei <- dataverse_search(author = "Gary King", title = "Ecological Inference", type = "dataset", per_page = 20)
-#  # fields returned
-#  names(ei)
-#  # names of datasets
-#  ei$name
+# ei <- dataverse_search(author = "Gary King", title = "Ecological Inference", type = "dataset", per_page = 20)
+# # fields returned
+# names(ei)
+# # names of datasets
+# ei$name
 
 ## ---------------------------------------------------------------------------------------------------------------------
 ##  [1] "name"                    "type"                    "url"                     "global_id"              
